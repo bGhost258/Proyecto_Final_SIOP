@@ -1,10 +1,11 @@
 #include <iostream>
 #include "ProcesoRR.h"
+#include "Memoria.h"
 
 using namespace std;
 
 //void menuProcesos(); // Este es el de ProcesosRR
-void menuMemoria();  
+//void menuMemoria();  // Este es el de Memoria
 void menuConcurrencia();
 void menuDeadlock();
 
@@ -12,6 +13,7 @@ int main() {
     int opcion = 0;
 
     do {
+		system("cls");
         // Inicio del ciclo y menu principal del simulador
         cout << "\n=========================================" << endl;
         cout << "   SIMULADOR DE KERNEL - SISTEMAS OPERATIVOS" << endl;
@@ -67,9 +69,6 @@ int main() {
 // Inicio de la implementacion de los modulos del sistema
 
 
-void menuMemoria() {
-    cout << "[En desarrollo] Aqui ira la gestion de memoria." << endl;
-}
 
 void menuConcurrencia() {
     cout << "[En desarrollo] Aqui ira la concurrencia y sincronizacion." << endl;
