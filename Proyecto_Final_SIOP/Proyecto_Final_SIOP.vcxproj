@@ -123,7 +123,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ProcesosRR.cpp" />
     <ClCompile Include="Proyecto_Final_SIOP.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ProcesoRR.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

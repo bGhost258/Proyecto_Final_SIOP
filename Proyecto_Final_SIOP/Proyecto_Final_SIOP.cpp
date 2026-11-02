@@ -1,9 +1,10 @@
 #include <iostream>
+#include "ProcesoRR.h"
 
 using namespace std;
 
-void menuProcesos();
-void menuMemoria();
+//void menuProcesos(); // Este es el de ProcesosRR
+void menuMemoria();  
 void menuConcurrencia();
 void menuDeadlock();
 
@@ -26,7 +27,6 @@ int main() {
         switch (opcion) {
         case 1:
             system("cls");
-
             cout << "\n--- Modulo de Procesos ---" << endl;
             menuProcesos();
             break;
@@ -65,18 +65,16 @@ int main() {
 }
 
 // Inicio de la implementacion de los modulos del sistema
-void menuProcesos() {
-    cout << "[En desarrollo] Aqui ira la gestion de procesos.\n";
-}
+
 
 void menuMemoria() {
-    cout << "[En desarrollo] Aqui ira la gestion de memoria.\n";
+    cout << "[En desarrollo] Aqui ira la gestion de memoria." << endl;
 }
 
 void menuConcurrencia() {
-    cout << "[En desarrollo] Aqui ira la concurrencia y sincronizacion.\n";
+    cout << "[En desarrollo] Aqui ira la concurrencia y sincronizacion." << endl;
 }
 
 void menuDeadlock() {
-    cout << "[En desarrollo] Aqui ira la deteccion y resolucion de deadlock.\n";
+    cout << "[En desarrollo] Aqui ira la deteccion y resolucion de deadlock." << endl;
 }
