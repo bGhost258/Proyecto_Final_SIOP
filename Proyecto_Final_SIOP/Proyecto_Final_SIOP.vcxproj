@@ -124,12 +124,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="concurrencia.cpp" />
+    <ClCompile Include="deadlock.cpp" />
     <ClCompile Include="Memoria.cpp" />
     <ClCompile Include="ProcesosRR.cpp" />
     <ClCompile Include="Proyecto_Final_SIOP.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="concurrencia.h" />
+    <ClInclude Include="deadlock.h" />
     <ClInclude Include="Memoria.h" />
     <ClInclude Include="ProcesoRR.h" />
   </ItemGroup>

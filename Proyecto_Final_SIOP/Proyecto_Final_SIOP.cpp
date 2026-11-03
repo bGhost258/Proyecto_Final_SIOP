@@ -2,6 +2,7 @@
 #include "ProcesoRR.h"
 #include "Memoria.h"
 #include "concurrencia.h"
+#include "deadlock.h"
 
 
 using namespace std;
@@ -9,7 +10,7 @@ using namespace std;
 //void menuProcesos(); // Este es el de ProcesosRR
 //void menuMemoria();  // Este es el de Memoria
 //void menuConcurrencia(); // Este esta en concurrencia.cpp
-void menuDeadlock();
+//void menuDeadlock(); // Este esta en deadlock.cpp
 
 int main() {
     int opcion = 0;
@@ -68,11 +69,7 @@ int main() {
     return 0;
 }
 
-// Inicio de la implementacion de los modulos del sistema
+// Antes aqui teniamos las funciones Dummy del proyecto, ahora ya estan en cada file respectivo.
 
 
 
-
-void menuDeadlock() {
-    cout << "[En desarrollo] Aqui ira la deteccion y resolucion de deadlock." << endl;
-}

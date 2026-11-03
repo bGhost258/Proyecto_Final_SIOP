@@ -27,6 +27,9 @@
     <ClCompile Include="concurrencia.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="deadlock.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ProcesoRR.h">
@@ -36,6 +39,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="concurrencia.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="deadlock.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
