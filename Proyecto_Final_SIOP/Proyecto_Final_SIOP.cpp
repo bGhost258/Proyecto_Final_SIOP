@@ -1,12 +1,14 @@
 #include <iostream>
 #include "ProcesoRR.h"
 #include "Memoria.h"
+#include "concurrencia.h"
+
 
 using namespace std;
 
 //void menuProcesos(); // Este es el de ProcesosRR
 //void menuMemoria();  // Este es el de Memoria
-void menuConcurrencia();
+//void menuConcurrencia(); // Este esta en concurrencia.cpp
 void menuDeadlock();
 
 int main() {
@@ -70,9 +72,6 @@ int main() {
 
 
 
-void menuConcurrencia() {
-    cout << "[En desarrollo] Aqui ira la concurrencia y sincronizacion." << endl;
-}
 
 void menuDeadlock() {
     cout << "[En desarrollo] Aqui ira la deteccion y resolucion de deadlock." << endl;

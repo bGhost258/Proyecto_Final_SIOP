@@ -21,9 +21,21 @@
     <ClCompile Include="ProcesosRR.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Memoria.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="concurrencia.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ProcesoRR.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Memoria.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="concurrencia.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
