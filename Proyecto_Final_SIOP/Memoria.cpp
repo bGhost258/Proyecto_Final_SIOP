@@ -2,6 +2,7 @@
 #include <vector>
 #include <string>
 #include <cstdlib>
+#include <limits>
 #include "memoria.h"
 
 using namespace std;
@@ -25,12 +26,18 @@ void menuMemoria() {
         cout << "3. Liberar memoria de un proceso" << endl;
         cout << "4. Regresar al menu principal" << endl;
         cout << "Seleccione una opcion: ";
-        cin >> opcionSub;
+
+        // Validación de opción de menú principal
+        if (!(cin >> opcionSub)) {
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            continue;
+        }
 
         if (opcionSub == 1) {
             system("cls");
             cout << endl << "========================================================================" << endl;
-            cout << "                  MAPA FISICO DE LA MEMORIA RAM (100 MB)                " << endl;
+            cout << "                 MAPA FISICO DE LA MEMORIA RAM (100 MB)                 " << endl;
             cout << "========================================================================" << endl;
             cout << "Leyenda: [ 0 ] = Libre  |  [ Px ] = Ocupado por Proceso x" << endl;
             cout << "------------------------------------------------------------------------" << endl;
@@ -53,7 +60,7 @@ void menuMemoria() {
             }
             cout << "========================================================================" << endl;
             cout << endl << "Presione ENTER para continuar...";
-            cin.ignore();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
             cin.get();
 
         }
@@ -63,16 +70,38 @@ void menuMemoria() {
             cout << "1. Asignacion Continua Estatica" << endl;
             cout << "2. Asignacion Continua Dinamica" << endl;
             cout << "3. Paginacion Simple" << endl;
-            cout << "Opcion: ";
-            cin >> tipoAlgoritmo;
+
+            // Validación estricta para seleccionar algoritmo (solo 1, 2 o 3 positivos)
+            do {
+                cout << "Opcion: ";
+                if (!(cin >> tipoAlgoritmo)) {
+                    cin.clear();
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                    cout << "[Error] Entrada invalida. Ingrese un numero entre 1 y 3.\n";
+                }
+                else if (tipoAlgoritmo < 1 || tipoAlgoritmo > 3) {
+                    cout << "[Error] Opcion fuera de rango. Seleccione 1, 2 o 3.\n";
+                }
+            } while (tipoAlgoritmo < 1 || tipoAlgoritmo > 3);
 
             char continuar = 's';
             while (continuar == 's' || continuar == 'S') {
                 int pid = procesosMemoria.empty() ? 1 : procesosMemoria.back().first + 1;
-                int tam;
+                int tam = 0;
                 cout << endl << "--- Configurando Proceso PID [" << pid << "] ---" << endl;
-                cout << "Ingrese tamano en MB: ";
-                cin >> tam;
+
+                // Validación estricta para el tamaño en MB (solo números positivos mayores a 0)
+                do {
+                    cout << "Ingrese tamano en MB: ";
+                    if (!(cin >> tam)) {
+                        cin.clear();
+                        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                        cout << "[Error] Entrada invalida. Ingrese un numero entero positivo.\n";
+                    }
+                    else if (tam <= 0) {
+                        cout << "[Error] El tamano debe ser un valor positivo mayor a 0.\n";
+                    }
+                } while (tam <= 0);
 
                 // Calcular bloques ocupados totales en la matriz
                 int bloquesOcupadosTotales = 0;
@@ -115,8 +144,7 @@ void menuMemoria() {
                         cout << "========================================================================" << endl;
                     }
                     cout << endl << "Presione ENTER para regresar...";
-                    cin.ignore();
-                    cin.get();
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
                     cin.get();
                     break;
                 }
@@ -216,8 +244,7 @@ void menuMemoria() {
                 if (!asignadoConExito) {
                     cout << endl << "No se pudo asignar memoria debido a restricciones del algoritmo." << endl;
                     cout << endl << "Presione ENTER para continuar...";
-                    cin.ignore();
-                    cin.get();
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
                     cin.get();
                     break;
                 }
@@ -268,9 +295,20 @@ void menuMemoria() {
                     cout << " - PID [" << procesosMemoria[i].first << "] (" << procesosMemoria[i].second << " MB)" << endl;
                 }
                 cout << endl << "0. Liberar todos los procesos y reiniciar memoria" << endl;
-                int pidLiberar;
-                cout << endl << "Ingrese el PID del proceso que desea liberar: ";
-                cin >> pidLiberar;
+                int pidLiberar = -1;
+
+                // Validación para asegurar que el PID ingresado sea un número entero positivo/cero válido
+                do {
+                    cout << endl << "Ingrese el PID del proceso que desea liberar: ";
+                    if (!(cin >> pidLiberar)) {
+                        cin.clear();
+                        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                        cout << "[Error] Entrada invalida. Ingrese un numero de la lista.\n";
+                    }
+                    else if (pidLiberar < 0) {
+                        cout << "[Error] El PID no puede ser un numero negativo.\n";
+                    }
+                } while (pidLiberar < 0);
 
                 if (pidLiberar == 0) {
                     char confirmar;

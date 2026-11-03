@@ -3,6 +3,7 @@
 #include <vector>
 #include <string>
 #include <cstdlib>
+#include <limits>
 
 using namespace std;
 
@@ -32,13 +33,29 @@ void menuProcesos() {
         cout << "3. Ver Diagrama de Gantt (Historial de Ejecucion)" << endl;
         cout << "4. Regresar al menu principal" << endl;
         cout << "Seleccione una opcion: ";
-        cin >> opcionSub;
+
+        if (!(cin >> opcionSub)) {
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            continue;
+        }
 
         if (opcionSub == 1) {
             system("cls");
-            int n;
-            cout << "Cuantos procesos desea crear?: ";
-            cin >> n;
+            int n = 0;
+
+            // Validación para asegurar que se ingresen solo números positivos en la cantidad de procesos
+            do {
+                cout << "Cuantos procesos desea crear?: ";
+                if (!(cin >> n)) {
+                    cin.clear();
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                    cout << "[Error] Entrada invalida. Ingrese un numero entero.\n";
+                }
+                else if (n <= 0) {
+                    cout << "[Error] La cantidad de procesos debe ser un numero positivo mayor a 0.\n";
+                }
+            } while (n <= 0);
 
             listaProcesos.clear();
             historialGantt.clear();
@@ -48,10 +65,33 @@ void menuProcesos() {
                 p.pid = i + 1;
                 p.estado = "Waiting";
                 cout << "\n--- Configurando Proceso PID [" << p.pid << "] ---\n";
-                cout << "Ingrese tamano en memoria (MB): ";
-                cin >> p.tamMemoria;
-                cout << "Ingrese tiempo requerido de procesador: ";
-                cin >> p.rafagaTotal;
+
+                // Validación para asegurar memoria positiva
+                do {
+                    cout << "Ingrese tamano en memoria (MB): ";
+                    if (!(cin >> p.tamMemoria)) {
+                        cin.clear();
+                        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                        cout << "[Error] Entrada invalida. Ingrese un numero entero.\n";
+                    }
+                    else if (p.tamMemoria <= 0) {
+                        cout << "[Error] El tamano en memoria debe ser un valor positivo mayor a 0.\n";
+                    }
+                } while (p.tamMemoria <= 0);
+
+                // Validación para asegurar ráfaga total positiva
+                do {
+                    cout << "Ingrese tiempo requerido de procesador: ";
+                    if (!(cin >> p.rafagaTotal)) {
+                        cin.clear();
+                        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                        cout << "[Error] Entrada invalida. Ingrese un numero entero.\n";
+                    }
+                    else if (p.rafagaTotal <= 0) {
+                        cout << "[Error] El tiempo requerido debe ser un valor positivo mayor a 0.\n";
+                    }
+                } while (p.rafagaTotal <= 0);
+
                 p.rafagaRestante = p.rafagaTotal;
                 p.completionTime = 0;
 
@@ -59,7 +99,7 @@ void menuProcesos() {
             }
             cout << "\nProcesos creados y guardados exitosamente!" << endl;
             cout << "\nPresione ENTER para continuar...";
-            cin.ignore();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
             cin.get();
 
         }
@@ -67,7 +107,7 @@ void menuProcesos() {
             if (listaProcesos.empty()) {
                 cout << "[Advertencia] No hay procesos creados aun. Cree procesos primero (Opcion 1)." << endl;
                 cout << "\nPresione ENTER para continuar...";
-                cin.ignore();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
                 cin.get();
                 continue;
             }
@@ -83,7 +123,7 @@ void menuProcesos() {
             int tiempoActual = 0;
             bool simulando = true;
 
-            cin.ignore(); // Limpiar buffer de entrada
+            cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Limpiar buffer de entrada
 
             while (simulando) {
                 system("cls");
@@ -104,7 +144,7 @@ void menuProcesos() {
                     }
 
                     cout << "\n==========================================================================================" << endl;
-                    cout << "                     ESTADO ACTUAL DEL PLANIFICADOR                                       " << endl;
+                    cout << "                     ESTADO ACTUAL DEL PLANIFICADOR                                         " << endl;
                     cout << "==========================================================================================" << endl;
                     cout << "PID \t Estado \t Memoria(MB) \t Tiempo requerido \t Raf.Rest. \t CT \t" << endl;
                     cout << "------------------------------------------------------------------------------------------" << endl;
@@ -157,7 +197,7 @@ void menuProcesos() {
 
                 // Mostrar la tabla con el estado actualizado
                 cout << "\n==========================================================================================" << endl;
-                cout << "                     ESTADO ACTUAL DEL PLANIFICADOR                                       " << endl;
+                cout << "                     ESTADO ACTUAL DEL PLANIFICADOR                                         " << endl;
                 cout << "==========================================================================================" << endl;
                 cout << "PID \t Estado \t Memoria(MB) \t Tiempo requerido \t Raf.Rest. \t CT" << endl;
                 cout << "------------------------------------------------------------------------------------------" << endl;

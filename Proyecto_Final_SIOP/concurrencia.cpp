@@ -6,7 +6,7 @@
 
 using namespace std;
 
-// Mutex simulando semaforo binario, esto con su libreria especifica
+// Mutex simulando semaforo binario, esto con su funcion especifica
 int recursoCompartido = 50;
 int estadoSemaforo = 1;       // 1 = Libre, 0 = Ocupado
 int procesosEnColaEspera = 0; // Control visual de la cola de espera
